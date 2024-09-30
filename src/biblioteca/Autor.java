@@ -1,8 +1,7 @@
 package biblioteca;
 
-public class Autor {
+public class Autor extends Pessoa{
 
-    private String nome;
     private String dataNascimento;
     private String nacionalidade;
     private String biografia;
@@ -11,18 +10,10 @@ public class Autor {
     }
 
     public Autor(String nome, String dataNascimento, String nacionalidade, String biografia) {
-        this.nome = nome;
+        super(nome);
         this.dataNascimento = dataNascimento;
         this.nacionalidade = nacionalidade;
         this.biografia = biografia;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public void setDataNascimento(String dataNascimento) {
