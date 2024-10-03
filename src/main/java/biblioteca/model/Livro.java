@@ -1,14 +1,33 @@
-package biblioteca;
+package biblioteca.model;
+
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+@Entity
 public class Livro {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "titulo", nullable = false)
     private String titulo;
+
+    @ManyToOne
+    @JoinColumn(name = "autor_id", nullable = false)
     private Autor autor;
+
+    @Column(name = "data_publicacao")
     private LocalDate dataPublicacao;
+
+    @Column(name = "isbn", nullable = false)
     private String isbn;
+
+    @Column(name = "genero")
     private String genero;
+
+    @Column(name = "quantidade")
     private int quantidade;
 
     public Livro() {
@@ -70,4 +89,6 @@ public class Livro {
     public int getQuantidade() {
         return quantidade;
     }
+
+
 }

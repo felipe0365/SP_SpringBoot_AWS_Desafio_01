@@ -1,7 +1,12 @@
-package biblioteca;
+package biblioteca.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Pessoa {
 
+    @Column(name = "nome", unique = true, nullable = false)
     private String nome;
 
     public Pessoa() {

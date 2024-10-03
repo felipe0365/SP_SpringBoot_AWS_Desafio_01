@@ -1,16 +1,31 @@
-package biblioteca;
+package biblioteca.model;
+
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Membro extends Pessoa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "endereco")
     private String endereco;
+
+    @Column(name = "telefone")
     private String telefone;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "data_associacao")
     private LocalDate dataAssociacao;
 
+    @OneToMany(mappedBy = "membro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Emprestimo> emprestimos;
 
     public Membro() {

@@ -1,15 +1,35 @@
-package biblioteca;
+package biblioteca.model;
+
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
 public class Emprestimo {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "livro_id")
     private Livro livro;
+
+    @ManyToOne
+    @JoinColumn(name = "membro_id")
     private Membro membro;
+
+    @Column(name = "data_emprestimo")
     private LocalDate dataEmprestimo;
+
+    @Column(name = "data_devolucao")
     private LocalDate dataDevolucao;
+
+    @Enumerated(EnumType.STRING)
     private EstadoEmprestimo estado;
+
+    @Column(name = "multa", precision = 10, scale = 2)
     private BigDecimal multa;
 
     public Emprestimo() {
