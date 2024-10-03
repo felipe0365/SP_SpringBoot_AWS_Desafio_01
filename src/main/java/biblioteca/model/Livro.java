@@ -21,7 +21,7 @@ public class Livro {
     @Column(name = "data_publicacao")
     private LocalDate dataPublicacao;
 
-    @Column(name = "isbn", nullable = false)
+    @Column(name = "isbn", nullable = false, unique = true)
     private String isbn;
 
     @Column(name = "genero")
