@@ -1,5 +1,6 @@
 package biblioteca.main;
 
+import biblioteca.dao.imp.LivroImp;
 import biblioteca.model.Autor;
 import biblioteca.model.Livro;
 import jakarta.persistence.EntityManager;
@@ -16,9 +17,11 @@ public class Main {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("bibliotecaPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Scanner sc = new Scanner(System.in);
+        LivroImp livroImp = new LivroImp(entityManager);
+        String relatorioLivros = livroImp.gerarRelatorio();
+        System.out.println(relatorioLivros);
 
-        entityManager.getTransaction().begin();
+        /*entityManager.getTransaction().begin();
 
         //find
         Autor tolkien = entityManager.find(Autor.class, 1);
@@ -34,7 +37,7 @@ public class Main {
 
         entityManager.persist(senhorDosAneis1);
         entityManager.getTransaction().commit();
-        System.out.println("Done!");
+        System.out.println("Done!");*/
 
         /* int opcao = 0;
         while(opcao != 5) {
