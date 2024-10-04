@@ -8,9 +8,7 @@ public interface LivroDAO {
 
     void cadastrar(Livro livro);
 
-    void atualizar(Livro livro);
-
-    void deletar(Livro livro);
+    void deletarPorId(Long id);
 
     Livro buscarPorId(Long id);
 

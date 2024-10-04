@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -17,9 +18,22 @@ public class Main {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("bibliotecaPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        LivroImp livroImp = new LivroImp(entityManager);
-        String relatorioLivros = livroImp.gerarRelatorio();
-        System.out.println(relatorioLivros);
+        Autor tolkien = entityManager.find(Autor.class, 1);
+
+        LivroImp teste = new LivroImp(entityManager);
+        teste.deletarPorId(2L);
+
+        /*
+        teste.setTitulo("teste");
+        teste.setAutor(tolkien);
+        teste.setDataPublicacao(LocalDate.of(2000, 2, 4));
+        teste.setIsbn("1234567890");
+        teste.setGenero("Fantasia");
+        teste.setQuantidade(1);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(teste);
+        entityManager.getTransaction().commit();*/
 
         /*entityManager.getTransaction().begin();
 
