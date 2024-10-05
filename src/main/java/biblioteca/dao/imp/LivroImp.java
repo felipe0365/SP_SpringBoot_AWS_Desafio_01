@@ -33,6 +33,8 @@ public class LivroImp implements LivroDAO, RelatorioDAO {
             System.out.println("Livro cadastrado com sucesso: " + livro);
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar o livro: " + livro);
+        } finally {
+            entityManager.close();
         }
     }
 
@@ -53,6 +55,8 @@ public class LivroImp implements LivroDAO, RelatorioDAO {
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             System.out.println("Erro ao deletar o livro com ID: " + id);
+        } finally {
+            entityManager.close();
         }
     }
 
@@ -69,6 +73,8 @@ public class LivroImp implements LivroDAO, RelatorioDAO {
         } catch (Exception e) {
             System.out.println("Erro ao buscar o livro com ID: " + id);
             return null;
+        } finally {
+            entityManager.close();
         }
     }
 
@@ -81,6 +87,8 @@ public class LivroImp implements LivroDAO, RelatorioDAO {
         } catch (NoResultException e) {
             System.out.println("Nenhum livro encontrado com ISBN: " + isbn);
             return null;
+        } finally {
+            entityManager.close();
         }
     }
 
