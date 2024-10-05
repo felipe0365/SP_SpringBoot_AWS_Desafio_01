@@ -8,9 +8,7 @@ public interface AutorDAO {
 
     void cadastrar(Autor autor);
 
-    void atualizar(Autor autor);
-
-    void deletar(Autor autor);
+    void deletarPorId(Long id);
 
     Autor buscarPorId(Long id);
 

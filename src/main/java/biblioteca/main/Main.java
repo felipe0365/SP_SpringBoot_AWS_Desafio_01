@@ -1,5 +1,6 @@
 package biblioteca.main;
 
+import biblioteca.dao.imp.AutorImp;
 import biblioteca.dao.imp.LivroImp;
 import biblioteca.model.Autor;
 import biblioteca.model.Livro;
@@ -18,10 +19,21 @@ public class Main {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("bibliotecaPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        /*AutorImp autorImp = new AutorImp(entityManager);
+        System.out.println(autorImp.gerarRelatorio());*/
+
         Autor tolkien = entityManager.find(Autor.class, 1);
 
-        LivroImp teste = new LivroImp(entityManager);
-        teste.deletarPorId(2L);
+        AutorImp autores = new AutorImp(entityManager);
+        autores.deletarPorId(4L);
+
+
+        /*Autor CSLewis = new Autor();
+        CSLewis.setNome("C. S. Lewis");
+        CSLewis.setDataNascimento(LocalDate.of(1898, 11, 29));
+        CSLewis.setNacionalidade("britânico");
+        CSLewis.setBiografia("Clive Staples Lewis, comumente referido como C. S. Lewis (Belfast, 29 de novembro de 1898 — Oxford, 22 de novembro de 1963), foi um professor universitário, escritor, romancista, poeta, crítico literário, ensaísta e teólogo anglicano irlandês. Durante sua carreira acadêmica, foi professor e membro do Magdalen College, tanto da Universidade de Oxford como da Universidade de Cambridge. Ele é conhecido por seus trabalhos envolvendo tanto a apologia cristã – incluindo as obras O Problema do Sofrimento (1940), Milagres (1947) e Cristianismo Puro e Simples (1952) – quanto os temas de ficção e fantasia – com obras como As Crônicas de Nárnia (1950-56), Cartas de um diabo ao seu aprendiz (1942) e Trilogia Espacial (1938-45). Foi também um estudioso da literatura medieval e renascentista, tendo produzido alguns dos mais renomados trabalhos acadêmicos envolvendo esses temas no século XX.");
+         */
 
         /*
         teste.setTitulo("teste");
