@@ -70,12 +70,10 @@ public class MembroImp implements MembroDAO {
         return entityManager.createQuery("FROM Membro", Membro.class).getResultList();
     }
 
-    // Método adicional para verificar multas
     public boolean temMultaPendente(Membro membro) {
         return membro.getMultaTotal().compareTo(BigDecimal.ZERO) > 0;
     }
 
-    // Método auxiliar para gerenciar multas
     public void aplicarMulta(Long membroId, BigDecimal multa) {
         try {
             entityManager.getTransaction().begin();
@@ -89,79 +87,4 @@ public class MembroImp implements MembroDAO {
             entityManager.getTransaction().rollback();
         }
     }
-
-    /*
-    @Override
-    public void pegarEmprestado(Long id) {
-        try {
-            Membro membro = entityManager.find(Membro.class, this);
-            Livro livro = entityManager.find(Livro.class, id);
-            int livroQtd = livro.getQuantidade();
-
-            if (livro == null || membro == null) {
-                System.out.println("Nenhum livro ou autor encontrado.");
-            }else if(livro != null && membro != null) {
-
-            }
-
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void devolverEmprestimo(Livro livro) {
-
-    }
-
-    @Override
-    public boolean consultarPossibilidadeEmprestimo() {
-        Membro membro =
-    }
-
-    @Override
-    public BigDecimal consultarMulta() {
-        return null;
-    }
-     */
-
-    /*
-    public void devolverEmprestimo(Long emprestimoId) {
-        em.getTransaction().begin();
-        try {
-            Emprestimo emprestimo = emprestimoDAO.buscarPorId(emprestimoId);
-            if (emprestimo == null) {
-                throw new IllegalStateException("Empréstimo não encontrado.");
-            }
-
-            LocalDate hoje = LocalDate.now();
-            if (hoje.isAfter(emprestimo.getDataDevolucaoPrevista())) {
-                long diasAtrasados = ChronoUnit.DAYS.between(emprestimo.getDataDevolucaoPrevista(), hoje);
-                BigDecimal multaPorDia = new BigDecimal("5.00"); // Exemplo: R$ 5,00 por dia
-                BigDecimal multa = multaPorDia.multiply(BigDecimal.valueOf(diasAtrasados));
-
-                // Aplicar multa ao membro
-                Membro membro = emprestimo.getMembro();
-                membro.setMultaTotal(membro.getMultaTotal().add(multa));
-                membroDAO.atualizar(membro); // Atualiza o membro no BD
-
-                emprestimo.setMulta(multa);
-            }
-
-            Livro livro = emprestimo.getLivro();
-            livro.setQuantidade(livro.getQuantidade() + 1);
-            emprestimo.setEstado(EstadoEmprestimo.CONCLUIDO);
-
-            emprestimoDAO.devolver(emprestimo);
-            em.merge(livro);
-            em.merge(membro);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-            throw new RuntimeException("Erro ao realizar devolução.");
-        }
-    }
-     */
 }

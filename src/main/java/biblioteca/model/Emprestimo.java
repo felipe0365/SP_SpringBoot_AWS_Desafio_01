@@ -96,4 +96,17 @@ public class Emprestimo {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Emprestimo{" +
+                "id=" + id +
+                ", livro=" + livro +
+                ", membro=" + membro +
+                ", dataEmprestimo=" + dataEmprestimo +
+                ", dataDevolucao=" + dataDevolucao +
+                ", estado=" + estado +
+                ", multa=" + multa +
+                '}';
+    }
 }

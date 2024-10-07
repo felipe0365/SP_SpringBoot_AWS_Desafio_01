@@ -93,4 +93,17 @@ public class Membro extends Pessoa {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Membro{" +
+                "id=" + id +
+                ", endereco='" + endereco + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                ", dataAssociacao=" + dataAssociacao +
+                ", emprestimos=" + emprestimos +
+                ", multaTotal=" + multaTotal +
+                '}';
+    }
 }

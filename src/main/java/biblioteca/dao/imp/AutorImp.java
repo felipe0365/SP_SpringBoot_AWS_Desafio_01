@@ -3,14 +3,11 @@ package biblioteca.dao.imp;
 import biblioteca.dao.AutorDAO;
 import biblioteca.dao.RelatorioDAO;
 import biblioteca.model.Autor;
-import biblioteca.model.Livro;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AutorImp extends Autor implements AutorDAO, RelatorioDAO {
