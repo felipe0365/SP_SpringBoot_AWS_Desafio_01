@@ -1,5 +1,6 @@
 package biblioteca.model;
 
+import biblioteca.dao.imp.AutorImp;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -41,6 +42,7 @@ public class Livro {
         this.genero = genero;
         this.quantidade = quantidade;
     }
+
 
     public String getTitulo() {
         return titulo;
