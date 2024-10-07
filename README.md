@@ -40,8 +40,10 @@ O sistema utiliza os seguintes conceitos e tecnologias:
     - Permite a verificação e aplicação de multas.
     - Realiza operações de busca, remoção e listagem.
 
-4. **Multa por Atraso**
+4. **Empréstimo e Devolução de Livros**
+    - Permite o empréstimo de livros para membros.
     - Calcula multas por atraso e atualização de estado do empréstimo.
+    - Processa a devolução e atualiza o estado dos empréstimos.
 
 5. **Relatórios**
     - Gera relatórios de livros emprestados, membros com multas, etc.
@@ -62,9 +64,8 @@ O sistema utiliza os seguintes conceitos e tecnologias:
 2. **Configure o banco de dados MySQL**:
     - Certifique-se de que o servidor MySQL está rodando e as tabelas necessárias estão criadas.
 
-
 3. **Execute o projeto**:
-    - Execute a clase Main localizado em:
+    - Execute a classe Main localizada em:
     ```bash
     SP_SpringBoot_AWS_Desafio_01\src\main\java\biblioteca\application.
     ```
@@ -83,7 +84,6 @@ Implementa operações relacionadas ao gerenciamento de autores e geração de r
     - `buscarPorId(Long id)`: Retorna detalhes do autor pelo ID.
     - `buscarPorNome(String nome)`: Retorna detalhes do autor pelo nome.
     - `listarTodos()`: Lista todos os autores cadastrados.
-    - `autorExiste(String nome)`: Verifica se já existe um autor com o nome especificado.
     - `gerarRelatorio()`: Gera um relatório detalhado dos autores.
 
 #### `LivroImp`
@@ -112,4 +112,11 @@ Responsável pelo gerenciamento de membros, incluindo o controle de multas.
         - `temMultaPendente(Membro membro)`: Verifica se o membro possui multas pendentes.
         - `aplicarMulta(Long membroId, BigDecimal multa)`: Aplica uma multa ao membro especificado.
 
----
+#### `EmprestimoImp`
+
+Gerencia operações de empréstimos e devoluções, além de gerar relatórios.
+
+- **Métodos**:
+    - `pegarEmprestado(Membro membro, Long id)`: Registra um novo empréstimo para um membro.
+    - `devolverEmprestimo(Membro membro, Long id)`: Processa a devolução e atualiza o estado do empréstimo.
+    - `gerarRelatorio()`: Gera um relatório detalhado de todos os empréstimos.
