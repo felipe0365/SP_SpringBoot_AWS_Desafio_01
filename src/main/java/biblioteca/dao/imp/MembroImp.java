@@ -1,6 +1,8 @@
 package biblioteca.dao.imp;
 
+import biblioteca.dao.EmprestimoDAO;
 import biblioteca.dao.MembroDAO;
+import biblioteca.model.Livro;
 import biblioteca.model.Membro;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -23,7 +25,6 @@ public class MembroImp implements MembroDAO {
             entityManager.persist(membro);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
@@ -38,7 +39,6 @@ public class MembroImp implements MembroDAO {
             }
             entityManager.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
@@ -89,6 +89,43 @@ public class MembroImp implements MembroDAO {
             entityManager.getTransaction().rollback();
         }
     }
+
+    /*
+    @Override
+    public void pegarEmprestado(Long id) {
+        try {
+            Membro membro = entityManager.find(Membro.class, this);
+            Livro livro = entityManager.find(Livro.class, id);
+            int livroQtd = livro.getQuantidade();
+
+            if (livro == null || membro == null) {
+                System.out.println("Nenhum livro ou autor encontrado.");
+            }else if(livro != null && membro != null) {
+
+            }
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void devolverEmprestimo(Livro livro) {
+
+    }
+
+    @Override
+    public boolean consultarPossibilidadeEmprestimo() {
+        Membro membro =
+    }
+
+    @Override
+    public BigDecimal consultarMulta() {
+        return null;
+    }
+     */
+
     /*
     public void devolverEmprestimo(Long emprestimoId) {
         em.getTransaction().begin();

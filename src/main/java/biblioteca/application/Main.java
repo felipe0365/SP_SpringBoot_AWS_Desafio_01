@@ -1,6 +1,7 @@
 package biblioteca.application;
 
 import biblioteca.dao.imp.AutorImp;
+import biblioteca.dao.imp.EmprestimoImp;
 import biblioteca.dao.imp.LivroImp;
 import biblioteca.dao.imp.MembroImp;
 import biblioteca.model.Autor;
@@ -26,9 +27,7 @@ public class Main {
         int opcao = 0;
         boolean loop = true;
         while (loop) {
-
             System.out.println("BEM VINDO(a) A BIBLIOTECA");
-
             System.out.println();
             System.out.println("1) Cadastrar Livro");
             System.out.println("2) Buscar livro");
@@ -37,7 +36,10 @@ public class Main {
             System.out.println("5) Cadastrar Autor");
             System.out.println("6) Listar autores");
             System.out.println("7) Gerar relatório dos autores");
-            System.out.println("8) Sair");
+            System.out.println("8) Gerar relatório dos livros");
+            System.out.println("9) Gerar relatório dos empréstimos");
+            System.out.println("10) Criar membro");
+            System.out.println("11) Sair");
             System.out.println("O que deseja fazer? ");
             opcao = sc.nextInt();
             sc.nextLine();
@@ -123,6 +125,9 @@ public class Main {
                         System.out.println("Valor inválido!");
                         continue;
                     }
+                case 3:
+                    System.out.println("Informe o ID do membro que deseja fazer o emprestimo: ");
+                    String idString = sc.nextLine();
                 case 5:
                     System.out.println("Digite o nome do autor: ");
                     String nomeAutor = sc.nextLine();
@@ -153,6 +158,42 @@ public class Main {
                     autorImpRelatorio.gerarRelatorio();
                     break;
                 case 8:
+                    LivroImp livroImp = new LivroImp(entityManager);
+                    livroImp.gerarRelatorio();
+                case 9:
+                    EmprestimoImp emprestimoImp = new EmprestimoImp(entityManager);
+                    emprestimoImp.gerarRelatorio();
+                case 10:
+                    System.out.println("Digite o nome do membro: ");
+                    String nomeMembro = sc.nextLine();
+                    Membro membroCadastrado = entityManager.createQuery("SELECT m FROM Membro m WHERE m.nome = :nome", Membro.class)
+                            .setParameter("nome", nomeMembro)
+                            .getSingleResult();
+                    String nomeMembroCadastrado = membroCadastrado.getNome();
+                    if (nomeMembro.equals(nomeMembroCadastrado)) {
+                        System.out.println("Membro já cadastrado");
+                    } else {
+                        System.out.println("Digite o endereço do membro: ");
+                        String endereco = sc.nextLine();
+                        System.out.println("Digite o telefone do membro: ");
+                        String telefone = sc.nextLine();
+                        System.out.println("Digite o email do membro:");
+                        String email = sc.nextLine();
+
+                        Membro membro = new Membro();
+                        membro.setNome(nomeMembro);
+                        membro.setTelefone(telefone);
+                        membro.setEndereco(endereco);
+                        membro.setEmail(email);
+                        membro.setMultaTotal(BigDecimal.valueOf(0));
+                        membro.setDataAssociacao(LocalDate.now());
+
+                        entityManager.getTransaction().begin();
+                        entityManager.persist(membro);
+                        entityManager.getTransaction().commit();
+                    }
+
+                case 11:
                     loop = false;
                     break;
 

@@ -1,16 +1,14 @@
 package biblioteca.dao;
 
 import biblioteca.model.Livro;
+import biblioteca.model.Membro;
 
 import java.math.BigDecimal;
 
 public interface EmprestimoDAO {
 
-    void pegarEmprestado(Livro livro);
+    void pegarEmprestado(Membro membro, Long id);
 
-    void devolverEmprestimo(Livro livro);
+    void devolverEmprestimo(Membro membro, Long id);
 
-    boolean consultarPossibilidadeEmprestimo();
-
-    BigDecimal consultarMulta();
 }

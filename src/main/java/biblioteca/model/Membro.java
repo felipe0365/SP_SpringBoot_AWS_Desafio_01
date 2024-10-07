@@ -85,4 +85,12 @@ public class Membro extends Pessoa {
     public void setMultaTotal(BigDecimal multaTotal) {
         this.multaTotal = multaTotal;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
