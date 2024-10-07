@@ -2,6 +2,7 @@ package biblioteca.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +29,21 @@ public class Membro extends Pessoa {
     @OneToMany(mappedBy = "membro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Emprestimo> emprestimos;
 
+    @Column(name = "multa")
+    private BigDecimal multaTotal = BigDecimal.ZERO;
+
+
     public Membro() {
     }
 
-    public Membro(String nome, String endereco, String telefone, String email, LocalDate dataAssociacao) {
+    public Membro(String nome, String endereco, String telefone, String email, LocalDate dataAssociacao, BigDecimal multaTotal) {
         super(nome);
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
         this.dataAssociacao = dataAssociacao;
         this.emprestimos = new ArrayList<>();
+        this.multaTotal = multaTotal;
     }
 
     public String getEndereco() {
@@ -70,5 +76,13 @@ public class Membro extends Pessoa {
 
     public void setDataAssociacao(LocalDate dataAssociacao) {
         this.dataAssociacao = dataAssociacao;
+    }
+
+    public BigDecimal getMultaTotal() {
+        return multaTotal;
+    }
+
+    public void setMultaTotal(BigDecimal multaTotal) {
+        this.multaTotal = multaTotal;
     }
 }

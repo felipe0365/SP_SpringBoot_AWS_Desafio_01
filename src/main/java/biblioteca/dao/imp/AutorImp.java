@@ -7,12 +7,13 @@ import biblioteca.model.Livro;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutorImp implements AutorDAO, RelatorioDAO {
+public class AutorImp extends Autor implements AutorDAO, RelatorioDAO {
 
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
@@ -134,6 +135,22 @@ public class AutorImp implements AutorDAO, RelatorioDAO {
     }
 
     @Override
+    public boolean autorExiste(String nome) {
+        try {
+            TypedQuery<Long> query = entityManager.createQuery(
+                    "SELECT COUNT(a) FROM Autor a WHERE a.nome = :nome",
+                    Long.class
+            );
+            query.setParameter("nome", nome);
+
+            Long count = query.getSingleResult();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
     public String gerarRelatorio() {
         List<Autor> autores = entityManager.createQuery("FROM Autor", Autor.class).getResultList();
         StringBuilder relatorio = new StringBuilder("Relatório de autores:\n");
@@ -143,4 +160,6 @@ public class AutorImp implements AutorDAO, RelatorioDAO {
         entityManager.close();
         return relatorio.toString();
     }
+
+
 }

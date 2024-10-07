@@ -15,4 +15,6 @@ public interface AutorDAO {
     Autor buscarPorNome(String nome);
 
     List<Autor> listarTodos();
+
+    boolean autorExiste(String nome);
 }
